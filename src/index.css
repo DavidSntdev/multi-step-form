@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary */
+  --colorMarineBlue: hsl(213, 96%, 18%);
+  --colorPurplishBlue: hsl(243, 100%, 62%);
+  --colorPastelBlue: hsl(228, 100%, 84%);
+  --colorLightBlue: hsl(206, 94%, 87%);
+  --colorStrawberryRed: hsl(354, 84%, 57%);
+
+  /* Neutral */
+  --colorCoolGray: hsl(231, 11%, 63%);
+  --colorLightGray: hsl(229, 24%, 87%);
+  --colorMagnolia: hsl(217, 100%, 97%);
+  --colorAlabaster: hsl(231, 100%, 99%);
+  --colorWhite: hsl(0, 0%, 100%);
+
+  /* Weights: 400, 500, 700 */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: 'Ubuntu';
+}
