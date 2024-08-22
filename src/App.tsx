@@ -12,12 +12,12 @@ function App() {
   };
 
   return (
-    <main className="w-full h-screen relative bg-[var(--colorLightGray)]">
+    <main className="w-full h-screen relative bg-[var(--colorMagnolia)]">
       <div className="relative">
         <img src={data.sidebarmobile} alt="" className="w-full" />
         <Pages activeStep={activeStep} />
 
-        <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10 w-11/12 bg-[var(--colorWhite)] rounded-xl p-8 mt-6 shadow-lg">
+        <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10 w-11/12 bg-[var(--colorWhite)] rounded-xl p-8 mt-8 shadow-large shadow-[var(--colorLightBlue)]">
           {activeStep === 1 && <Step1 />}
           {activeStep === 2 && <Step2 />}
         </div>

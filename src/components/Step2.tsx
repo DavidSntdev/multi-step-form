@@ -5,6 +5,11 @@ import { h1Class, pClass, h1Plans, divPlans } from "../data/styles";
 
 function Step2() {
   const [yearly, setYearly] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState("");
+
+  const selecionar = (plan: string) => {
+    setSelectedPlan(plan);
+  };
 
   const changeMode = () => {
     setYearly(!yearly);
@@ -15,9 +20,22 @@ function Step2() {
       <h1 className={h1Class}>Select your plan</h1>
       <p className={pClass}>You have the option of monthly or yearly billing</p>
       <div className="flex flex-col gap-3">
-        <div className={divPlans}>
+        <div
+          className={`${divPlans} cursor-pointer transition-all duration-500 ease-in-out transform hover:scale-105`}
+          onClick={() => selecionar("Arcade")}
+          style={{
+            border:
+              selectedPlan === "Arcade"
+                ? "1px solid var(--colorPurplishBlue)"
+                : "1px solid var(--colorLightGray)",
+            boxShadow:
+              selectedPlan === "Arcade"
+                ? "0 0 10px rgba(123, 97, 255, 0.5)"
+                : "none",
+          }}
+        >
           <img src={data.iconArcade} alt="" />
-          <div>
+          <div className="flex flex-col gap-1">
             <h1 className={h1Plans}>Arcade</h1>
             {yearly ? (
               <p className="text-[var(--colorCoolGray)]">$90/yr</p>
@@ -25,15 +43,28 @@ function Step2() {
               <p className="text-[var(--colorCoolGray)]">$9/mo</p>
             )}
             {yearly && (
-              <p className="text-[var(--colorMarineBlue)] font-medium text-sm">
+              <p className="text-[var(--colorPurplishBlue)] font-medium text-base">
                 2 months free
               </p>
             )}
           </div>
         </div>
-        <div className={divPlans}>
+        <div
+          className={`${divPlans} cursor-pointer transition-all duration-500 ease-in-out transform hover:scale-105`}
+          onClick={() => selecionar("Advanced")}
+          style={{
+            border:
+              selectedPlan === "Advanced"
+                ? "1px solid var(--colorPurplishBlue)"
+                : "1px solid var(--colorLightGray)",
+            boxShadow:
+              selectedPlan === "Advanced"
+                ? "0 0 10px rgba(123, 97, 255, 0.5)"
+                : "none",
+          }}
+        >
           <img src={data.iconAdvanced} alt="" />
-          <div>
+          <div className="flex flex-col gap-1">
             <h1 className={h1Plans}>Advanced</h1>
             {yearly ? (
               <p className="text-[var(--colorCoolGray)]">$120/yr</p>
@@ -41,15 +72,28 @@ function Step2() {
               <p className="text-[var(--colorCoolGray)]">$12/mo</p>
             )}
             {yearly && (
-              <p className="text-[var(--colorMarineBlue)] font-medium text-sm">
+              <p className="text-[var(--colorPurplishBlue)] font-medium text-base">
                 2 months free
               </p>
             )}
           </div>
         </div>
-        <div className={divPlans}>
+        <div
+          className={`${divPlans} cursor-pointer transition-all duration-500 ease-in-out transform hover:scale-105`}
+          onClick={() => selecionar("Pro")}
+          style={{
+            border:
+              selectedPlan === "Pro"
+                ? "1px solid var(--colorPurplishBlue)"
+                : "1px solid var(--colorLightGray)",
+            boxShadow:
+              selectedPlan === "Pro"
+                ? "0 0 10px rgba(123, 97, 255, 0.5)"
+                : "none",
+          }}
+        >
           <img src={data.iconPro} alt="" />
-          <div>
+          <div className="flex flex-col gap-1">
             <h1 className={h1Plans}>Pro</h1>
             {yearly ? (
               <p className="text-[var(--colorCoolGray)]">$150/yr</p>
@@ -57,16 +101,16 @@ function Step2() {
               <p className="text-[var(--colorCoolGray)]">$15/mo</p>
             )}
             {yearly && (
-              <p className="text-[var(--colorMarineBlue)] font-medium text-sm">
+              <p className="text-[var(--colorPurplishBlue)] font-medium text-base">
                 2 months free
               </p>
             )}
           </div>
         </div>
       </div>
-      <div className="flex flex-row items-center justify-center gap-10 py-5 mt-5">
+      <div className="flex flex-row items-center justify-center gap-5 py-5 mt-5">
         <p
-          className="font-bold text-lg"
+          className="font-bold text-lg transition-colors duration-500 ease-in-out"
           style={{
             color: yearly ? "var(--colorCoolGray)" : "var(--colorMarineBlue)",
           }}
@@ -85,7 +129,7 @@ function Step2() {
           }}
         />
         <p
-          className="font-bold text-lg"
+          className="font-bold text-lg transition-colors duration-500 ease-in-out"
           style={{
             color: yearly ? "var(--colorMarineBlue)" : "var(--colorCoolGray)",
           }}
