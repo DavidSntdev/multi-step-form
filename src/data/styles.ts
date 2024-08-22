@@ -13,6 +13,6 @@ export const inputStep1 =
 export const divForm = "flex flex-col";
 
 export const divPlans =
-  "flex flex-row gap-5 p-4 border border-[var(--colorLightGray)] rounded-md items-start";
+  "flex flex-row gap-5 p-4 border border-[var(--colorLightGray)] rounded-xl items-start";
 
 export const h1Plans = "text-[var(--colorMarineBlue)] text-xl font-bold";
