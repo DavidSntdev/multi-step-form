@@ -65,7 +65,12 @@ function Step2() {
         </div>
       </div>
       <div className="flex flex-row items-center justify-center gap-10 py-5 mt-5">
-        <p className="font-bold text-[var(--colorMarineBlue)] text-lg">
+        <p
+          className="font-bold text-lg"
+          style={{
+            color: yearly ? "var(--colorCoolGray)" : "var(--colorMarineBlue)",
+          }}
+        >
           Monthly
         </p>
         <Switch
@@ -74,12 +79,19 @@ function Step2() {
           classNames={{
             wrapper: cn(
               "bg-[var(--colorMarineBlue)]",
-              "group-data-[selected=true]:bg-[var(--colorCoolGray)]",
+              "group-data-[selected=true]:bg-[var(--colorMarineBlue)]",
               "group-data-[focus-visible=true]:ring-[var(--colorMarineBlue)]"
             ),
           }}
         />
-        <p className="font-bold text-[var(--colorCoolGray)] text-lg">Yearly</p>
+        <p
+          className="font-bold text-lg"
+          style={{
+            color: yearly ? "var(--colorMarineBlue)" : "var(--colorCoolGray)",
+          }}
+        >
+          Yearly
+        </p>
       </div>
     </>
   );

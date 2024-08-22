@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { data } from "./data/data";
-import Buttons from "./components/Buttons";
+import Pages from "./components/Pages";
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
 
@@ -11,15 +11,11 @@ function App() {
     setActiveStep((prevStep) => Math.min(prevStep + 1, 4)); 
   };
 
-  const goToStep = (stepNumber: number) => {
-    setActiveStep(stepNumber);
-  };
-
   return (
     <main className="w-full h-screen relative bg-[var(--colorLightGray)]">
       <div className="relative">
         <img src={data.sidebarmobile} alt="" className="w-full" />
-        <Buttons goToStep={goToStep} activeStep={activeStep} />
+        <Pages activeStep={activeStep} />
 
         <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10 w-11/12 bg-[var(--colorWhite)] rounded-xl p-8 mt-6 shadow-lg">
           {activeStep === 1 && <Step1 />}

@@ -1,4 +1,4 @@
-export const buttonClass =
+export const PagesClass =
   "h-8 w-8 rounded-[50%] border border-white flex justify-center items-center";
 
 export const h1Class = "text-3xl font-bold text-[var(--colorMarineBlue)]";

@@ -1,17 +1,16 @@
-import { buttonClass } from "../data/styles";
+import { PagesClass } from "../data/styles";
 
-interface ButtonsProps {
-  goToStep: (stepNumber: number) => void;
+interface PagesProps {
   activeStep: number;
 }
 
-function Buttons({ goToStep, activeStep }: ButtonsProps) {
+function Pages({ activeStep }: PagesProps) {
   return (
-    <div className="absolute top-0 left-0 right-0 flex gap-3 justify-center z-10 mt-4 py-5">
+    <div className="absolute top-0 left-0 right-0 flex gap-3 justify-center z-10 mt-4 py-5 font-bold">
       {[1, 2, 3, 4].map((btnNumber) => (
-        <button
+        <div
           key={btnNumber}
-          className={buttonClass}
+          className={PagesClass}
           style={{
             backgroundColor:
               activeStep === btnNumber
@@ -26,13 +25,12 @@ function Buttons({ goToStep, activeStep }: ButtonsProps) {
                 ? "var(--colorLightBlue)"
                 : "var(--colorWhite)",
           }}
-          onClick={() => goToStep(btnNumber)}
         >
           {btnNumber}
-        </button>
+        </div>
       ))}
     </div>
   );
 }
 
-export default Buttons;
+export default Pages;
