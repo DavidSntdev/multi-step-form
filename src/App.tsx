@@ -4,7 +4,7 @@ import { Button } from "@nextui-org/react";
 import Pages from "./components/Pages";
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
-import Step3 from "./components/step3";
+import Step3 from "./components/Step3";
 import Step4 from "./components/Step4";
 
 function App() {
@@ -43,15 +43,27 @@ function App() {
           </Button>
         </div>
         <div className="static z-20">
-          <Button
-            onClick={goToNextStep}
-            color="primary"
-            variant="faded"
-            radius="sm"
-            className="text-[var(--colorPastelBlue)] font-bold px-5 py-5 bg-[var(--colorMarineBlue)]"
-          >
-            Next Step
-          </Button>
+          {activeStep === 4 ? (
+            <Button
+              onClick={goToNextStep}
+              color="primary"
+              variant="faded"
+              radius="sm"
+              className="text-[var(--colorPastelBlue)] font-bold px-5 py-5 bg-[var(--colorPurplishBlue)] text-base"
+            >
+              Confirm
+            </Button>
+          ) : (
+            <Button
+              onClick={goToNextStep}
+              color="primary"
+              variant="faded"
+              radius="sm"
+              className="text-[var(--colorPastelBlue)] font-bold px-5 py-5 bg-[var(--colorMarineBlue)] text-base"
+            >
+              Next Step
+            </Button>
+          )}
         </div>
       </div>
     </main>

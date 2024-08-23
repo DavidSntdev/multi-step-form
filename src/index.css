@@ -8,6 +8,7 @@
   /* Primary */
   --colorMarineBlue: hsl(213, 96%, 18%);
   --colorPurplishBlue: hsl(243, 100%, 62%);
+  --colorPurplishBlueShadow: hsla(243, 100%, 62%, 0.479);
   --colorPastelBlue: hsl(228, 100%, 84%);
   --colorLightBlue: hsl(206, 94%, 87%);
   --colorStrawberryRed: hsl(354, 84%, 57%);
