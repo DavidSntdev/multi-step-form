@@ -18,39 +18,41 @@ function App() {
   };
 
   return (
-    <main className="w-full h-screen relative bg-[var(--colorMagnolia)]">
-      <div className="relative">
-        <img src={data.sidebarmobile} alt="" className="w-full" />
+    <main className="w-full h-auto pb-10 bg-[var(--colorMagnolia)]">
+      <img src={data.sidebarmobile} alt="" className="w-full absolute z-0" />
+      <div className="flex justify-center z-10 static">
         <Pages activeStep={activeStep} />
 
-        <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10 w-11/12 bg-[var(--colorWhite)] rounded-xl p-8 mt-8 shadow-large shadow-[var(--colorLightBlue)]">
+        <div className="bg-[var(--colorWhite)] rounded-xl p-8 mt-28 w-11/12 shadow-large shadow-[var(--colorLightBlue)] static z-20">
           {activeStep === 1 && <Step1 />}
           {activeStep === 2 && <Step2 />}
           {activeStep === 3 && <Step3 />}
           {activeStep === 4 && <Step4 />}
         </div>
       </div>
-      <div className="absolute bottom-4 left-4 z-20">
-        <Button
-          onClick={goToPrevStep}
-          color="primary"
-          variant="light"
-          radius="sm"
-          className="text-[var(--colorCoolGray)] font-bold px-5 py-2 data-[hover=true]:bg-slate-300"
-        >
-          Go Back
-        </Button>
-      </div>
-      <div className="absolute bottom-4 right-4 z-20">
-        <Button
-          onClick={goToNextStep}
-          color="primary"
-          variant="faded"
-          radius="sm"
-          className="text-[var(--colorPastelBlue)] font-bold px-5 py-5 bg-[var(--colorMarineBlue)]"
-        >
-          Next Step
-        </Button>
+      <div className="flex justify-between items-end bg-[var(--colorMagnolia)] px-5 pt-16">
+        <div className="static z-20">
+          <Button
+            onClick={goToPrevStep}
+            color="primary"
+            variant="light"
+            radius="sm"
+            className="text-[var(--colorCoolGray)] font-bold px-5 py-2 data-[hover=true]:bg-slate-300"
+          >
+            Go Back
+          </Button>
+        </div>
+        <div className="static z-20">
+          <Button
+            onClick={goToNextStep}
+            color="primary"
+            variant="faded"
+            radius="sm"
+            className="text-[var(--colorPastelBlue)] font-bold px-5 py-5 bg-[var(--colorMarineBlue)]"
+          >
+            Next Step
+          </Button>
+        </div>
       </div>
     </main>
   );
