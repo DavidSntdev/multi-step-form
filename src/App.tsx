@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { data } from "./data/data";
+import { Button } from "@nextui-org/react";
 import Pages from "./components/Pages";
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
-import { Button } from "@nextui-org/react";
+import Step3 from "./components/step3";
+import Step4 from "./components/Step4";
 
 function App() {
   const [activeStep, setActiveStep] = useState<number>(1);
@@ -24,6 +26,8 @@ function App() {
         <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-10 w-11/12 bg-[var(--colorWhite)] rounded-xl p-8 mt-8 shadow-large shadow-[var(--colorLightBlue)]">
           {activeStep === 1 && <Step1 />}
           {activeStep === 2 && <Step2 />}
+          {activeStep === 3 && <Step3 />}
+          {activeStep === 4 && <Step4 />}
         </div>
       </div>
       <div className="absolute bottom-4 left-4 z-20">
@@ -32,7 +36,7 @@ function App() {
           color="primary"
           variant="light"
           radius="sm"
-          className="text-[var(--colorCoolGray)] font-bold px-5 py-2"
+          className="text-[var(--colorCoolGray)] font-bold px-5 py-2 data-[hover=true]:bg-slate-300"
         >
           Go Back
         </Button>

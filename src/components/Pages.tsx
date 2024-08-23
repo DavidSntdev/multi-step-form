@@ -10,7 +10,7 @@ function Pages({ activeStep }: PagesProps) {
       {[1, 2, 3, 4].map((btnNumber) => (
         <div
           key={btnNumber}
-          className={PagesClass}
+          className={`${PagesClass} transition-all duration-300 ease-in-out`}
           style={{
             backgroundColor:
               activeStep === btnNumber
@@ -24,6 +24,8 @@ function Pages({ activeStep }: PagesProps) {
               activeStep === btnNumber
                 ? "var(--colorLightBlue)"
                 : "var(--colorWhite)",
+            transition:
+              "background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease",
           }}
         >
           {btnNumber}

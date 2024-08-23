@@ -1,10 +1,4 @@
-import {
-  h1Class,
-  pClass,
-  labelStep1,
-  inputStep1,
-  divForm,
-} from "../data/styles";
+import { h1Class, pClass } from "../data/styles";
 import { Input } from "@nextui-org/react";
 import { MailIcon } from "./utils/MailIcon";
 
@@ -16,18 +10,37 @@ function Step1() {
         Please provide your name, email address, and phone number.
       </p>
       <form action="" className="flex flex-col gap-4">
-        <div className={divForm}>
-          <label htmlFor="name" className={labelStep1}>
-            Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="e.g. Stephen King"
-            className={inputStep1}
-          />
-        </div>
+        <Input
+          type="text"
+          label="Name"
+          placeholder="Your Name"
+          labelPlacement="outside"
+          errorMessage="The field is required"
+          classNames={{
+            label: [
+              "text-[var(--colorMarineBlue)] font-medium text-base",
+              "group-data-[filled-within=true]:text-[var(--colorMarineBlue)]",
+            ],
+            input: [
+              "bg-white",
+              "text-[var(--colorPurplishBlue)] font-bold",
+              "placeholder:text-[var(--colorCoolGray)]",
+              "group-data-[has-value=true]:text-text-[var(--colorPurplishBlue)]",
+            ],
+            innerWrapper: ["bg-transparent"],
+            inputWrapper: [
+              "shadow-xl",
+              "bg-[var(--colorWhite)]",
+              "group-data-[hover=true]:bg-gray-200",
+              "backdrop-blur-xl",
+              "backdrop-saturate-200",
+              "rounded-md",
+              "!cursor-text",
+              "border border-[var(--colorLightGray)]",
+              "py-6",
+            ],
+          }}
+        />
         <Input
           type="email"
           label="Email Address"
@@ -44,34 +57,55 @@ function Step1() {
             ],
             input: [
               "bg-white",
-              "text-[var(--colorCoolGray)]",
+              "text-[var(--colorPurplishBlue)] font-bold",
               "placeholder:text-[var(--colorCoolGray)]",
+              "group-data-[has-value=true]:text-text-[var(--colorPurplishBlue)]",
             ],
-            innerWrapper: "bg-transparent",
+            innerWrapper: ["bg-transparent"],
             inputWrapper: [
               "shadow-xl",
               "bg-[var(--colorWhite)]",
-              "hover:bg-gray-300 dark:hover:bg-gray-700",
-              "focus:bg-gray-100 dark:focus:bg-gray-600",
+              "group-data-[hover=true]:bg-gray-200",
               "backdrop-blur-xl",
               "backdrop-saturate-200",
               "rounded-md",
               "!cursor-text",
+              "border border-[var(--colorLightGray)]",
+              "py-6",
             ],
           }}
         />
-        <div className={divForm}>
-          <label htmlFor="number" className={labelStep1}>
-            Phone Number
-          </label>
-          <input
-            type="number"
-            name="number"
-            id="number"
-            placeholder="e.g. + 1 234 567 890"
-            className={inputStep1}
-          />
-        </div>
+        <Input
+          type="number"
+          label="Phone Number"
+          placeholder="+0 000 000 000"
+          labelPlacement="outside"
+          errorMessage="The field is required"
+          classNames={{
+            label: [
+              "text-[var(--colorMarineBlue)] font-medium text-base",
+              "group-data-[filled-within=true]:text-[var(--colorMarineBlue)]",
+            ],
+            input: [
+              "bg-white",
+              "text-[var(--colorPurplishBlue)] font-bold",
+              "placeholder:text-[var(--colorCoolGray)]",
+              "group-data-[has-value=true]:text-[var(--colorPurplishBlue)]",
+            ],
+            innerWrapper: ["bg-transparent"],
+            inputWrapper: [
+              "shadow-xl",
+              "bg-[var(--colorWhite)]",
+              "group-data-[hover=true]:bg-gray-200",
+              "backdrop-blur-xl",
+              "backdrop-saturate-200",
+              "rounded-md",
+              "!cursor-text",
+              "border border-[var(--colorLightGray)]",
+              "py-6",
+            ],
+          }}
+        />
       </form>
     </>
   );
