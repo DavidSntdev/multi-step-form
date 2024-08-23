@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Checkbox, cn } from "@nextui-org/react";
 
-function Checks() {
+interface ChecksProps {
+  billingMode: boolean; // true for yearly, false for monthly
+}
+
+function Checks({ billingMode }: ChecksProps) {
   const [isOnlineSelected, setIsOnlineSelected] = useState(false);
   const [isStorageSelected, setIsStorageSelected] = useState(false);
   const [isProfile, setIsProfile] = useState(false);
@@ -41,7 +45,7 @@ function Checks() {
           </div>
           <div className="flex flex-col items-end">
             <p className="text-[var(--colorPurplishBlue)] font-medium text-sm">
-              +$1/mo
+              {billingMode ? "+$10/yr" : "+$1/mo"}
             </p>
           </div>
         </div>
@@ -80,7 +84,7 @@ function Checks() {
           </div>
           <div className="flex flex-col items-end">
             <p className="text-[var(--colorPurplishBlue)] font-medium text-sm">
-              +$2/mo
+              {billingMode ? "+$20/yr" : "+$2/mo"}
             </p>
           </div>
         </div>
@@ -119,7 +123,7 @@ function Checks() {
           </div>
           <div className="flex flex-col items-end">
             <p className="text-[var(--colorPurplishBlue)] font-medium text-sm">
-              +$2/mo
+              {billingMode ? "+$20/yr" : "+$2/mo"}
             </p>
           </div>
         </div>

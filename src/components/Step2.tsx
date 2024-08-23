@@ -3,16 +3,38 @@ import { data } from "../data/data";
 import { Switch, cn } from "@nextui-org/react";
 import { h1Class, pClass, h1Plans, divPlans } from "../data/styles";
 
-function Step2() {
-  const [yearly, setYearly] = useState(false);
-  const [selectedPlan, setSelectedPlan] = useState("");
+interface Step2Props {
+  Step2Data: {
+    escolha: string;
+    mensal: boolean;
+  };
+  setStep2Data: React.Dispatch<
+    React.SetStateAction<{
+      escolha: string;
+      mensal: boolean;
+    }>
+  >;
+}
+
+function Step2({ Step2Data, setStep2Data }: Step2Props) {
+  const [yearly, setYearly] = useState(Step2Data.mensal);
+  const [selectedPlan, setSelectedPlan] = useState(Step2Data.escolha);
 
   const selecionar = (plan: string) => {
     setSelectedPlan(plan);
+    setStep2Data((prevState) => ({
+      ...prevState,
+      escolha: plan,
+    }));
   };
 
   const changeMode = () => {
-    setYearly(!yearly);
+    const newYearly = !yearly;
+    setYearly(newYearly);
+    setStep2Data((prevState) => ({
+      ...prevState,
+      mensal: newYearly,
+    }));
   };
 
   return (
@@ -20,8 +42,8 @@ function Step2() {
       <h1 className={h1Class}>Select your plan</h1>
       <p className={pClass}>You have the option of monthly or yearly billing</p>
       <div className="flex flex-col gap-3">
-        <div
-          className={`${divPlans} cursor-pointer transition-all duration-500 ease-in-out transform hover:scale-105`}
+        <button
+          className={`${divPlans} cursor-pointer transition-all duration-500 ease-in-out transform hover:scale-105 outline-[var(--colorPurplishBlue)]`}
           onClick={() => selecionar("Arcade")}
           style={{
             border:
@@ -35,22 +57,20 @@ function Step2() {
           }}
         >
           <img src={data.iconArcade} alt="" />
-          <div className="flex flex-col">
+          <div className="flex flex-col text-left">
             <h1 className={h1Plans}>Arcade</h1>
-            {yearly ? (
-              <p className="text-[var(--colorCoolGray)]">$90/yr</p>
-            ) : (
-              <p className="text-[var(--colorCoolGray)]">$9/mo</p>
-            )}
+            <p className="text-[var(--colorCoolGray)]">
+              {yearly ? "$90/yr" : "$9/mo"}
+            </p>
             {yearly && (
               <p className="text-[var(--colorPurplishBlue)] font-medium text-base">
                 2 months free
               </p>
             )}
           </div>
-        </div>
-        <div
-          className={`${divPlans} cursor-pointer transition-all duration-500 ease-in-out transform hover:scale-105`}
+        </button>
+        <button
+          className={`${divPlans} cursor-pointer transition-all duration-500 ease-in-out transform hover:scale-105 outline-[var(--colorPurplishBlue)]`}
           onClick={() => selecionar("Advanced")}
           style={{
             border:
@@ -64,22 +84,20 @@ function Step2() {
           }}
         >
           <img src={data.iconAdvanced} alt="" />
-          <div className="flex flex-col">
+          <div className="flex flex-col text-left">
             <h1 className={h1Plans}>Advanced</h1>
-            {yearly ? (
-              <p className="text-[var(--colorCoolGray)]">$120/yr</p>
-            ) : (
-              <p className="text-[var(--colorCoolGray)]">$12/mo</p>
-            )}
+            <p className="text-[var(--colorCoolGray)]">
+              {yearly ? "$120/yr" : "$12/mo"}
+            </p>
             {yearly && (
               <p className="text-[var(--colorPurplishBlue)] font-medium text-base">
                 2 months free
               </p>
             )}
           </div>
-        </div>
-        <div
-          className={`${divPlans} cursor-pointer transition-all duration-500 ease-in-out transform hover:scale-105`}
+        </button>
+        <button
+          className={`${divPlans} cursor-pointer transition-all duration-500 ease-in-out transform hover:scale-105 outline-[var(--colorPurplishBlue)]`}
           onClick={() => selecionar("Pro")}
           style={{
             border:
@@ -93,20 +111,18 @@ function Step2() {
           }}
         >
           <img src={data.iconPro} alt="" />
-          <div className="flex flex-col">
+          <div className="flex flex-col text-left">
             <h1 className={h1Plans}>Pro</h1>
-            {yearly ? (
-              <p className="text-[var(--colorCoolGray)]">$150/yr</p>
-            ) : (
-              <p className="text-[var(--colorCoolGray)]">$15/mo</p>
-            )}
+            <p className="text-[var(--colorCoolGray)]">
+              {yearly ? "$150/yr" : "$15/mo"}
+            </p>
             {yearly && (
               <p className="text-[var(--colorPurplishBlue)] font-medium text-base">
                 2 months free
               </p>
             )}
           </div>
-        </div>
+        </button>
       </div>
       <div className="flex flex-row items-center justify-center gap-5 py-2 mt-5">
         <p

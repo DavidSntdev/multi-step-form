@@ -7,12 +7,33 @@ import Step2 from "./components/Step2";
 import Step3 from "./components/Step3";
 import Step4 from "./components/Step4";
 
+interface Step1Data {
+  name: string;
+  email: string;
+  phoneNumber: string;
+}
+
+interface Step2Data {
+  escolha: string;
+  mensal: boolean;
+}
+
 function App() {
   const [activeStep, setActiveStep] = useState<number>(1);
+  const [step1Data, setStep1Data] = useState<Step1Data>({
+    name: "",
+    email: "",
+    phoneNumber: "",
+  });
+  const [step2Data, setStep2Data] = useState<Step2Data>({
+    escolha: "",
+    mensal: false,
+  });
 
   const goToNextStep = () => {
     setActiveStep((prevStep) => Math.min(prevStep + 1, 4));
   };
+
   const goToPrevStep = () => {
     setActiveStep((prevStep) => Math.max(prevStep - 1, 1));
   };
@@ -24,9 +45,13 @@ function App() {
         <Pages activeStep={activeStep} />
 
         <div className="bg-[var(--colorWhite)] rounded-xl p-8 mt-28 w-11/12 shadow-large shadow-[var(--colorLightBlue)] static z-20">
-          {activeStep === 1 && <Step1 />}
-          {activeStep === 2 && <Step2 />}
-          {activeStep === 3 && <Step3 />}
+          {activeStep === 1 && (
+            <Step1 step1Data={step1Data} setStep1Data={setStep1Data} />
+          )}
+          {activeStep === 2 && (
+            <Step2 Step2Data={step2Data} setStep2Data={setStep2Data} />
+          )}
+          {activeStep === 3 && <Step3 billingMode={step2Data.mensal} />}
           {activeStep === 4 && <Step4 />}
         </div>
       </div>
@@ -37,7 +62,7 @@ function App() {
             color="primary"
             variant="light"
             radius="sm"
-            className="text-[var(--colorCoolGray)] font-bold px-5 py-2 data-[hover=true]:bg-slate-300"
+            className="text-[var(--colorCoolGray)] font-bold px-5 py-2 data-[hover=true]:bg-slate-300 data-[focus-visible=true]:outline-[var(--colorMarineBlue)]"
           >
             Go Back
           </Button>
@@ -49,7 +74,7 @@ function App() {
               color="primary"
               variant="faded"
               radius="sm"
-              className="text-[var(--colorPastelBlue)] font-bold px-5 py-5 bg-[var(--colorPurplishBlue)] text-base"
+              className="text-[var(--colorPastelBlue)] font-bold px-5 py-5 bg-[var(--colorPurplishBlue)] text-base data-[focus-visible=true]:outline-[var(--colorMarineBlue)]"
             >
               Confirm
             </Button>
@@ -59,7 +84,7 @@ function App() {
               color="primary"
               variant="faded"
               radius="sm"
-              className="text-[var(--colorPastelBlue)] font-bold px-5 py-5 bg-[var(--colorMarineBlue)] text-base"
+              className="text-[var(--colorPastelBlue)] font-bold px-5 py-5 bg-[var(--colorMarineBlue)] text-base data-[focus-visible=true]:outline-[var(--colorMarineBlue)]"
             >
               Next Step
             </Button>
