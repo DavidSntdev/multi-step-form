@@ -5,6 +5,8 @@ import {
   inputStep1,
   divForm,
 } from "../data/styles";
+import { Input } from "@nextui-org/react";
+import { MailIcon } from "./utils/MailIcon";
 
 function Step1() {
   return (
@@ -26,18 +28,38 @@ function Step1() {
             className={inputStep1}
           />
         </div>
-        <div className={divForm}>
-          <label htmlFor="email" className={labelStep1}>
-            Email Address
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="e.g. stephenking@lorem.com"
-            className={inputStep1}
-          />
-        </div>
+        <Input
+          type="email"
+          label="Email Address"
+          placeholder="you@example.com"
+          labelPlacement="outside"
+          errorMessage="Please enter a valid email"
+          endContent={
+            <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+          }
+          classNames={{
+            label: [
+              "text-[var(--colorMarineBlue)] font-medium text-base",
+              "group-data-[filled-within=true]:text-[var(--colorMarineBlue)]",
+            ],
+            input: [
+              "bg-white",
+              "text-[var(--colorCoolGray)]",
+              "placeholder:text-[var(--colorCoolGray)]",
+            ],
+            innerWrapper: "bg-transparent",
+            inputWrapper: [
+              "shadow-xl",
+              "bg-[var(--colorWhite)]",
+              "hover:bg-gray-300 dark:hover:bg-gray-700",
+              "focus:bg-gray-100 dark:focus:bg-gray-600",
+              "backdrop-blur-xl",
+              "backdrop-saturate-200",
+              "rounded-md",
+              "!cursor-text",
+            ],
+          }}
+        />
         <div className={divForm}>
           <label htmlFor="number" className={labelStep1}>
             Phone Number

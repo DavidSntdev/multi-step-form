@@ -35,7 +35,7 @@ function Step2() {
           }}
         >
           <img src={data.iconArcade} alt="" />
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col">
             <h1 className={h1Plans}>Arcade</h1>
             {yearly ? (
               <p className="text-[var(--colorCoolGray)]">$90/yr</p>
@@ -64,7 +64,7 @@ function Step2() {
           }}
         >
           <img src={data.iconAdvanced} alt="" />
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col">
             <h1 className={h1Plans}>Advanced</h1>
             {yearly ? (
               <p className="text-[var(--colorCoolGray)]">$120/yr</p>
@@ -93,7 +93,7 @@ function Step2() {
           }}
         >
           <img src={data.iconPro} alt="" />
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col">
             <h1 className={h1Plans}>Pro</h1>
             {yearly ? (
               <p className="text-[var(--colorCoolGray)]">$150/yr</p>
@@ -108,7 +108,7 @@ function Step2() {
           </div>
         </div>
       </div>
-      <div className="flex flex-row items-center justify-center gap-5 py-5 mt-5">
+      <div className="flex flex-row items-center justify-center gap-5 py-2 mt-5">
         <p
           className="font-bold text-lg transition-colors duration-500 ease-in-out"
           style={{

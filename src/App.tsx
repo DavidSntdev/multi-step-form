@@ -3,12 +3,16 @@ import { data } from "./data/data";
 import Pages from "./components/Pages";
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
+import { Button } from "@nextui-org/react";
 
 function App() {
   const [activeStep, setActiveStep] = useState<number>(1);
 
   const goToNextStep = () => {
-    setActiveStep((prevStep) => Math.min(prevStep + 1, 4)); 
+    setActiveStep((prevStep) => Math.min(prevStep + 1, 4));
+  };
+  const goToPrevStep = () => {
+    setActiveStep((prevStep) => Math.max(prevStep - 1, 1));
   };
 
   return (
@@ -22,13 +26,27 @@ function App() {
           {activeStep === 2 && <Step2 />}
         </div>
       </div>
-      <div className="absolute bottom-4 right-4">
-        <button
+      <div className="absolute bottom-4 left-4 z-20">
+        <Button
+          onClick={goToPrevStep}
+          color="primary"
+          variant="light"
+          radius="sm"
+          className="text-[var(--colorCoolGray)] font-bold px-5 py-2"
+        >
+          Go Back
+        </Button>
+      </div>
+      <div className="absolute bottom-4 right-4 z-20">
+        <Button
           onClick={goToNextStep}
-          className="bg-[var(--colorMarineBlue)] text-white px-5 py-2 rounded-md text-[var(--colorPastelBlue)] font-bold cursor-pointer"
+          color="primary"
+          variant="faded"
+          radius="sm"
+          className="text-[var(--colorPastelBlue)] font-bold px-5 py-5 bg-[var(--colorMarineBlue)]"
         >
           Next Step
-        </button>
+        </Button>
       </div>
     </main>
   );
