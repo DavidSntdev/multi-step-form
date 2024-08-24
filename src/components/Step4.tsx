@@ -64,7 +64,7 @@ function Step4({ step2Data, step3Data, onChangeStep }: Step4Props) {
             {isOnlineSelected && <p>Online Service</p>}
             {isOnlineSelected && (
               <p className="text-[--colorPurplishBlue]">
-                (+${onlinePrice}/{mensal ? "yr" : "mo"})
+                +${onlinePrice}/{mensal ? "yr" : "mo"}
               </p>
             )}
           </div>
@@ -72,7 +72,7 @@ function Step4({ step2Data, step3Data, onChangeStep }: Step4Props) {
             {isStorageSelected && <p>Large Storage</p>}
             {isStorageSelected && (
               <p className="text-[--colorPurplishBlue]">
-                (+${storagePrice}/{mensal ? "yr" : "mo"})
+                +${storagePrice}/{mensal ? "yr" : "mo"}
               </p>
             )}
           </div>
@@ -80,7 +80,7 @@ function Step4({ step2Data, step3Data, onChangeStep }: Step4Props) {
             {isProfile && <p>Customizable Profile</p>}
             {isProfile && (
               <p className="text-[--colorPurplishBlue]">
-                (+${profilePrice}/{mensal ? "yr" : "mo"})
+                +${profilePrice}/{mensal ? "yr" : "mo"}
               </p>
             )}
           </div>

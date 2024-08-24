@@ -1,28 +1,14 @@
 import { useState } from "react";
 import { data } from "./data/data";
 import { Button } from "@nextui-org/react";
+import { validateStep1 } from "./components/utils/validateStep1";
+import { Step1Data, Step2Data, Step3Data } from "./components/utils/interfaces";
 import Pages from "./components/Pages";
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
 import Step3 from "./components/Step3";
 import Step4 from "./components/Step4";
-
-interface Step1Data {
-  name: string;
-  email: string;
-  phoneNumber: string;
-}
-
-interface Step2Data {
-  escolha: string;
-  mensal: boolean;
-}
-
-interface Step3Data {
-  isOnlineSelected: boolean;
-  isStorageSelected: boolean;
-  isProfile: boolean;
-}
+import Confirm from "./components/Confirm";
 
 function App() {
   const [activeStep, setActiveStep] = useState<number>(1);
@@ -42,7 +28,10 @@ function App() {
   });
 
   const goToNextStep = () => {
-    setActiveStep((prevStep) => Math.min(prevStep + 1, 4));
+    if (activeStep === 1 && !validateStep1(step1Data)) {
+      return;
+    }
+    setActiveStep((prevStep) => Math.min(prevStep + 1, 5));
   };
 
   const goToPrevStep = () => {
@@ -76,11 +65,12 @@ function App() {
               onChangeStep={() => setActiveStep(2)}
             />
           )}
+          {activeStep === 5 && <Confirm />}
         </div>
       </div>
       <div className="flex justify-between items-end bg-[var(--colorMagnolia)] px-5 pt-16">
         <div>
-          {activeStep === 1 ? (
+          {activeStep === 5 || activeStep === 1 ? (
             <></>
           ) : (
             <Button
@@ -95,7 +85,9 @@ function App() {
           )}
         </div>
         <div>
-          {activeStep === 4 ? (
+          {activeStep === 5 ? (
+            <></>
+          ) : activeStep === 4 ? (
             <Button
               onClick={goToNextStep}
               color="primary"
@@ -108,10 +100,29 @@ function App() {
           ) : (
             <Button
               onClick={goToNextStep}
+              disabled={
+                (activeStep === 1 && !validateStep1(step1Data)) ||
+                (activeStep === 2 && !step2Data.escolha) ||
+                (activeStep === 3 &&
+                  !(
+                    step3Data.isOnlineSelected ||
+                    step3Data.isProfile ||
+                    step3Data.isStorageSelected
+                  ))
+              }
               color="primary"
               variant="faded"
               radius="sm"
-              className="text-[var(--colorPastelBlue)] font-bold px-5 py-5 bg-[var(--colorMarineBlue)] text-base data-[focus-visible=true]:outline-[var(--colorMarineBlue)]"
+              className={`text-[var(--colorPastelBlue)] font-bold px-5 py-5 ${
+                (activeStep === 1 && validateStep1(step1Data)) ||
+                (activeStep === 2 && step2Data.escolha) ||
+                (activeStep === 3 &&
+                  (step3Data.isOnlineSelected ||
+                    step3Data.isProfile ||
+                    step3Data.isStorageSelected))
+                  ? "bg-[var(--colorMarineBlue)]"
+                  : "bg-gray-400 cursor-not-allowed"
+              } text-base data-[focus-visible=true]:outline-[var(--colorMarineBlue)]`}
             >
               Next Step
             </Button>

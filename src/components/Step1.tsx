@@ -20,17 +20,42 @@ interface Step1Props {
 function Step1({ step1Data, setStep1Data }: Step1Props) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setStep1Data((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
+    if (name === "phoneNumber") {
+      const formattedPhoneNumber = formatPhoneNumber(value);
+      setStep1Data((prevData) => ({
+        ...prevData,
+        [name]: formattedPhoneNumber,
+      }));
+    } else {
+      setStep1Data((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
+  };
+
+  const formatPhoneNumber = (value: string) => {
+    const numericValue = value.replace(/\D/g, "");
+    const part1 = numericValue.slice(0, 2);
+    const part2 = numericValue.slice(2, 5);
+    const part3 = numericValue.slice(5, 8);
+    const part4 = numericValue.slice(8, 11);
+
+    let formattedNumber = part1 ? `+${part1}` : "";
+    if (part2) formattedNumber += ` ${part2}`;
+    if (part3) formattedNumber += ` ${part3}`;
+    if (part4) formattedNumber += ` ${part4}`;
+
+    return formattedNumber;
   };
 
   return (
     <>
       <h1 className={h1Class}>Personal Info</h1>
       <p className={pClass}>
-        Please provide your name, email address, and phone number.
+        Please provide your name, e-mail address and telephone number in order
+        to proceed.
       </p>
       <form action="" className="flex flex-col gap-4">
         <Input
@@ -105,7 +130,7 @@ function Step1({ step1Data, setStep1Data }: Step1Props) {
           }}
         />
         <Input
-          type="number"
+          type="tel"
           name="phoneNumber"
           label="Phone Number"
           placeholder="+0 000 000 000"
