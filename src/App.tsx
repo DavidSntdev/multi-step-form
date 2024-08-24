@@ -18,6 +18,12 @@ interface Step2Data {
   mensal: boolean;
 }
 
+interface Step3Data {
+  isOnlineSelected: boolean;
+  isStorageSelected: boolean;
+  isProfile: boolean;
+}
+
 function App() {
   const [activeStep, setActiveStep] = useState<number>(1);
   const [step1Data, setStep1Data] = useState<Step1Data>({
@@ -28,6 +34,11 @@ function App() {
   const [step2Data, setStep2Data] = useState<Step2Data>({
     escolha: "",
     mensal: false,
+  });
+  const [step3Data, setStep3Data] = useState<Step3Data>({
+    isOnlineSelected: false,
+    isStorageSelected: false,
+    isProfile: false,
   });
 
   const goToNextStep = () => {
@@ -51,23 +62,39 @@ function App() {
           {activeStep === 2 && (
             <Step2 Step2Data={step2Data} setStep2Data={setStep2Data} />
           )}
-          {activeStep === 3 && <Step3 billingMode={step2Data.mensal} />}
-          {activeStep === 4 && <Step4 />}
+          {activeStep === 3 && (
+            <Step3
+              billingMode={step2Data.mensal}
+              step3Data={step3Data}
+              setStep3Data={setStep3Data}
+            />
+          )}
+          {activeStep === 4 && (
+            <Step4
+              step2Data={step2Data}
+              step3Data={step3Data}
+              onChangeStep={() => setActiveStep(2)}
+            />
+          )}
         </div>
       </div>
       <div className="flex justify-between items-end bg-[var(--colorMagnolia)] px-5 pt-16">
-        <div className="static z-20">
-          <Button
-            onClick={goToPrevStep}
-            color="primary"
-            variant="light"
-            radius="sm"
-            className="text-[var(--colorCoolGray)] font-bold px-5 py-2 data-[hover=true]:bg-slate-300 data-[focus-visible=true]:outline-[var(--colorMarineBlue)]"
-          >
-            Go Back
-          </Button>
+        <div>
+          {activeStep === 1 ? (
+            <></>
+          ) : (
+            <Button
+              onClick={goToPrevStep}
+              color="primary"
+              variant="light"
+              radius="sm"
+              className="text-[var(--colorCoolGray)] font-bold px-5 py-2 data-[hover=true]:bg-slate-300 data-[focus-visible=true]:outline-[var(--colorMarineBlue)]"
+            >
+              Go Back
+            </Button>
+          )}
         </div>
-        <div className="static z-20">
+        <div>
           {activeStep === 4 ? (
             <Button
               onClick={goToNextStep}

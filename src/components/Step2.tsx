@@ -50,6 +50,10 @@ function Step2({ Step2Data, setStep2Data }: Step2Props) {
               selectedPlan === "Arcade"
                 ? "1px solid var(--colorPurplishBlue)"
                 : "1px solid var(--colorLightGray)",
+            backgroundColor:
+              selectedPlan === "Arcade"
+                ? "var(--colorMagnolia)"
+                : "var(--colorWhite)",
             boxShadow:
               selectedPlan === "Arcade"
                 ? "0 0 10px rgba(123, 97, 255, 0.5)"
@@ -77,6 +81,10 @@ function Step2({ Step2Data, setStep2Data }: Step2Props) {
               selectedPlan === "Advanced"
                 ? "1px solid var(--colorPurplishBlue)"
                 : "1px solid var(--colorLightGray)",
+            backgroundColor:
+              selectedPlan === "Advanced"
+                ? "var(--colorMagnolia)"
+                : "var(--colorWhite)",
             boxShadow:
               selectedPlan === "Advanced"
                 ? "0 0 10px rgba(123, 97, 255, 0.5)"
@@ -104,6 +112,10 @@ function Step2({ Step2Data, setStep2Data }: Step2Props) {
               selectedPlan === "Pro"
                 ? "1px solid var(--colorPurplishBlue)"
                 : "1px solid var(--colorLightGray)",
+            backgroundColor:
+              selectedPlan === "Pro"
+                ? "var(--colorMagnolia)"
+                : "var(--colorWhite)",
             boxShadow:
               selectedPlan === "Pro"
                 ? "0 0 10px rgba(123, 97, 255, 0.5)"

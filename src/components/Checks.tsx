@@ -1,15 +1,22 @@
-import { useState } from "react";
 import { Checkbox, cn } from "@nextui-org/react";
 
 interface ChecksProps {
-  billingMode: boolean; // true for yearly, false for monthly
+  billingMode: boolean;
+  step3Data: {
+    isOnlineSelected: boolean;
+    isStorageSelected: boolean;
+    isProfile: boolean;
+  };
+  setStep3Data: React.Dispatch<
+    React.SetStateAction<{
+      isOnlineSelected: boolean;
+      isStorageSelected: boolean;
+      isProfile: boolean;
+    }>
+  >;
 }
 
-function Checks({ billingMode }: ChecksProps) {
-  const [isOnlineSelected, setIsOnlineSelected] = useState(false);
-  const [isStorageSelected, setIsStorageSelected] = useState(false);
-  const [isProfile, setIsProfile] = useState(false);
-
+function Checks({ billingMode, step3Data, setStep3Data }: ChecksProps) {
   return (
     <div className="flex flex-col w-full justify-center gap-4">
       <Checkbox
@@ -20,7 +27,8 @@ function Checks({ billingMode }: ChecksProps) {
             "cursor-pointer rounded-lg gap-2 border border-[var(--colorLightGray)]",
             "transition-colors duration-400 ease-in-out",
             "data-[selected=true]:border-[var(--colorPurplishBlue)]",
-            "data-[selected=true]:shadow-[0px_0px_15px_rgba(123,97,255,0.5)]"
+            "data-[selected=true]:shadow-[0px_0px_15px_rgba(123,97,255,0.5)]",
+            "data-[selected=true]:bg-[var(--colorMagnolia)]"
           ),
           label: ["w-full"],
           wrapper: [
@@ -31,8 +39,10 @@ function Checks({ billingMode }: ChecksProps) {
             "rounded-md",
           ],
         }}
-        isSelected={isOnlineSelected}
-        onValueChange={setIsOnlineSelected}
+        isSelected={step3Data.isOnlineSelected}
+        onValueChange={(isSelected) =>
+          setStep3Data((prev) => ({ ...prev, isOnlineSelected: isSelected }))
+        }
       >
         <div className="w-full flex justify-between items-center">
           <div className="flex flex-col ">
@@ -59,7 +69,8 @@ function Checks({ billingMode }: ChecksProps) {
             "cursor-pointer rounded-lg gap-2 border border-[var(--colorLightGray)]",
             "transition-colors duration-400 ease-in-out",
             "data-[selected=true]:border-[var(--colorPurplishBlue)]",
-            "data-[selected=true]:shadow-[0px_0px_15px_rgba(123,97,255,0.5)]"
+            "data-[selected=true]:shadow-[0px_0px_15px_rgba(123,97,255,0.5)]",
+            "data-[selected=true]:bg-[var(--colorMagnolia)]"
           ),
           label: "w-full",
           wrapper: [
@@ -70,8 +81,10 @@ function Checks({ billingMode }: ChecksProps) {
             "rounded-md",
           ],
         }}
-        isSelected={isStorageSelected}
-        onValueChange={setIsStorageSelected}
+        isSelected={step3Data.isStorageSelected}
+        onValueChange={(isSelected) =>
+          setStep3Data((prev) => ({ ...prev, isStorageSelected: isSelected }))
+        }
       >
         <div className="w-full flex justify-between items-center">
           <div className="flex flex-col ">
@@ -98,7 +111,8 @@ function Checks({ billingMode }: ChecksProps) {
             "cursor-pointer rounded-lg gap-2 border border-[var(--colorLightGray)]",
             "transition-colors duration-400 ease-in-out",
             "data-[selected=true]:border-[var(--colorPurplishBlue)]",
-            "data-[selected=true]:shadow-[0px_0px_15px_rgba(123,97,255,0.5)]"
+            "data-[selected=true]:shadow-[0px_0px_15px_rgba(123,97,255,0.5)]",
+            "data-[selected=true]:bg-[var(--colorMagnolia)]"
           ),
           label: "w-full",
           wrapper: [
@@ -109,8 +123,10 @@ function Checks({ billingMode }: ChecksProps) {
             "rounded-md",
           ],
         }}
-        isSelected={isProfile}
-        onValueChange={setIsProfile}
+        isSelected={step3Data.isProfile}
+        onValueChange={(isSelected) =>
+          setStep3Data((prev) => ({ ...prev, isProfile: isSelected }))
+        }
       >
         <div className="w-full flex justify-between items-center">
           <div className="flex flex-col ">
