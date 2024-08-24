@@ -18,7 +18,7 @@ interface ChecksProps {
 
 function Checks({ billingMode, step3Data, setStep3Data }: ChecksProps) {
   return (
-    <div className="flex flex-col w-full justify-center gap-4">
+    <div className="flex flex-col w-full justify-center gap-4 lg:items-center">
       <Checkbox
         classNames={{
           base: cn(

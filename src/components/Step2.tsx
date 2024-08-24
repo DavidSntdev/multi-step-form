@@ -41,9 +41,9 @@ function Step2({ Step2Data, setStep2Data }: Step2Props) {
     <>
       <h1 className={h1Class}>Select your plan</h1>
       <p className={pClass}>You have the option of monthly or yearly billing</p>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col lg:flex-row gap-3 lg:gap-4">
         <button
-          className={`${divPlans} cursor-pointer transition-all duration-500 ease-in-out transform hover:scale-105 outline-[var(--colorPurplishBlue)]`}
+          className={`${divPlans} cursor-pointer transition-all duration-500 ease-in-out transform hover:scale-105 outline-[var(--colorPurplishBlue)] lg:flex-col lg:w-44`}
           onClick={() => selecionar("Arcade")}
           style={{
             border:
@@ -74,7 +74,7 @@ function Step2({ Step2Data, setStep2Data }: Step2Props) {
           </div>
         </button>
         <button
-          className={`${divPlans} cursor-pointer transition-all duration-500 ease-in-out transform hover:scale-105 outline-[var(--colorPurplishBlue)]`}
+          className={`${divPlans} cursor-pointer transition-all duration-500 ease-in-out transform hover:scale-105 outline-[var(--colorPurplishBlue)] lg:flex-col lg:w-44`}
           onClick={() => selecionar("Advanced")}
           style={{
             border:
@@ -105,7 +105,7 @@ function Step2({ Step2Data, setStep2Data }: Step2Props) {
           </div>
         </button>
         <button
-          className={`${divPlans} cursor-pointer transition-all duration-500 ease-in-out transform hover:scale-105 outline-[var(--colorPurplishBlue)]`}
+          className={`${divPlans} cursor-pointer transition-all duration-500 ease-in-out transform hover:scale-105 outline-[var(--colorPurplishBlue)] lg:flex-col lg:w-44`}
           onClick={() => selecionar("Pro")}
           style={{
             border:
@@ -136,7 +136,7 @@ function Step2({ Step2Data, setStep2Data }: Step2Props) {
           </div>
         </button>
       </div>
-      <div className="flex flex-row items-center justify-center gap-5 py-2 mt-5">
+      <div className="flex flex-row items-center justify-center gap-5 py-2 mt-5 lg:pt-5">
         <p
           className="font-bold text-lg transition-colors duration-500 ease-in-out"
           style={{

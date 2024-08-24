@@ -39,15 +39,16 @@ function App() {
   };
 
   return (
-    <main className="w-full h-auto pb-10 bg-[var(--colorMagnolia)] md:bg-[var(--colorWhite)] md:shadow-large md:shadow-[var(--colorLightBlue)] md:flex md:p-5 md:pb-5 md:rounded-xl md:w-[1000px]">
-      <picture className="w-full md:w-[30%] md:static z-0 relative">
-        <source media="(min-width: 768px)" srcSet={data.sidebardesktop} />
+    <main className="w-full h-auto pb-10 bg-[var(--colorMagnolia)] lg:bg-[var(--colorWhite)] lg:shadow-large lg:shadow-[var(--colorLightBlue)] lg:flex lg:p-5 lg:pb-5 lg:rounded-xl lg:w-[1000px]">
+      <picture className="w-full lg:w-[30%] relative z-0 ">
+        <source media="(min-width: 1024px)" srcSet={data.sidebardesktop} />
         <img src={data.sidebarmobile} alt="" className="w-full" />
         <Pages activeStep={activeStep} />
       </picture>
-      <div className="md:flex md:flex-col md:justify-center">
-        <div className="flex justify-center z-10 mt-[-190px] md:mt-0">
-          <div className="bg-[var(--colorWhite)] rounded-xl p-8 mt-28 w-11/12 shadow-large shadow-[var(--colorLightBlue)] md:shadow-none static z-20 md:mt-0">
+
+      <div className="lg:flex lg:flex-col lg:place-center lg:w-[70%]">
+        <div className="flex justify-center z-10 mt-[-190px] lg:mt-0">
+          <div className="bg-[var(--colorWhite)] rounded-xl p-8 mt-28 w-11/12 shadow-large shadow-[var(--colorLightBlue)] lg:shadow-none static z-20 lg:mt-0 md:mt-[-70px]">
             {activeStep === 1 && (
               <Step1 step1Data={step1Data} setStep1Data={setStep1Data} />
             )}
@@ -71,7 +72,7 @@ function App() {
             {activeStep === 5 && <Confirm />}
           </div>
         </div>
-        <div className="flex justify-between items-end bg-[var(--colorMagnolia)] px-5 pt-16 md:px-16">
+        <div className="flex justify-between items-end bg-[var(--colorMagnolia)] px-5 pt-16 lg:px-16 lg:pt-8 lg:h-2/3">
           <div>
             {activeStep === 5 || activeStep === 1 ? (
               <></>
