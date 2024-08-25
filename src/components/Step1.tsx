@@ -53,7 +53,9 @@ function Step1({ step1Data, setStep1Data, isGringo }: Step1Props) {
 
   return (
     <>
-      <h1 className={h1Class}>Personal Info</h1>
+      <h1 className={h1Class}>
+        {isGringo ? "Personal Info" : "Informação pessoal"}
+      </h1>
       <p className={pClass}>
         {isGringo
           ? "Please provide your name, email address, and phone number to proceed."

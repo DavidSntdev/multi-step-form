@@ -10,7 +10,6 @@ import Step2 from "./components/Step2";
 import Step3 from "./components/Step3";
 import Step4 from "./components/Step4";
 import Confirm from "./components/Confirm";
-import Infos from "./components/Infos";
 
 function App() {
   const [activeStep, setActiveStep] = useState<number>(1);
@@ -48,7 +47,7 @@ function App() {
     if (activeStep === 1 && !validateStep1(step1Data)) {
       return;
     }
-    setActiveStep((prevStep) => Math.min(prevStep + 1, 6));
+    setActiveStep((prevStep) => Math.min(prevStep + 1, 5));
   };
 
   const goToPrevStep = () => {
@@ -97,24 +96,9 @@ function App() {
               />
             )}
             {activeStep === 5 && <Confirm />}
-            {activeStep === 6 && (
-              <Infos
-                step1Data={step1Data}
-                step2Data={step2Data}
-                step3Data={step3Data}
-              />
-            )}
           </div>
         </div>
-        <div
-          className="flex justify-between items-end bg-[var(--colorMagnolia)] lg:bg-[var(--colorWhite)] px-5 pt-16 lg:px-16 lg:pt-8 lg:h-2/3"
-          style={{
-            justifyContent:
-              activeStep === 5 || activeStep === 6 ? "center" : "space-between",
-            alignItems:
-              activeStep === 5 || activeStep === 6 ? "flex-start" : "flex-end",
-          }}
-        >
+        <div className="flex justify-between items-end bg-[var(--colorMagnolia)] lg:bg-[var(--colorWhite)] px-5 pt-16 lg:px-16 lg:pt-8 lg:h-2/3">
           <div>
             {activeStep === 5 || activeStep === 1 ? (
               <></>
@@ -131,61 +115,47 @@ function App() {
             )}
           </div>
           <div>
-            {activeStep === 6 ? (
+            {activeStep === 5 ? (
               <></>
+            ) : activeStep === 4 ? (
+              <Button
+                onClick={goToNextStep}
+                color="primary"
+                variant="faded"
+                radius="sm"
+                className="text-[var(--colorPastelBlue)] font-bold px-5 py-5 bg-[var(--colorPurplishBlue)] text-base data-[focus-visible=true]:outline-[var(--colorMarineBlue)]"
+              >
+                {isGringo ? "Confirm" : "Confirmar"}
+              </Button>
             ) : (
-              <>
-                {activeStep === 5 ? (
-                  <Button
-                    onClick={goToNextStep}
-                    color="primary"
-                    variant="faded"
-                    radius="sm"
-                    className="text-[var(--colorPastelBlue)] font-bold px-5 py-5 bg-[var(--colorPurplishBlue)] text-base data-[focus-visible=true]:outline-[var(--colorMarineBlue)]"
-                  >
-                    {isGringo ? "View my information" : "Ver minhas infos"}
-                  </Button>
-                ) : activeStep === 4 ? (
-                  <Button
-                    onClick={goToNextStep}
-                    color="primary"
-                    variant="faded"
-                    radius="sm"
-                    className="text-[var(--colorPastelBlue)] font-bold px-5 py-5 bg-[var(--colorPurplishBlue)] text-base data-[focus-visible=true]:outline-[var(--colorMarineBlue)]"
-                  >
-                    {isGringo ? "Confirm" : "Confirmar"}
-                  </Button>
-                ) : (
-                  <Button
-                    onClick={goToNextStep}
-                    disabled={
-                      (activeStep === 1 && !validateStep1(step1Data)) ||
-                      (activeStep === 2 && !step2Data.escolha) ||
-                      (activeStep === 3 &&
-                        !(
-                          step3Data.isOnlineSelected ||
-                          step3Data.isProfile ||
-                          step3Data.isStorageSelected
-                        ))
-                    }
-                    color="primary"
-                    variant="faded"
-                    radius="sm"
-                    className={`text-[var(--colorPastelBlue)] font-bold px-5 py-5 ${
-                      (activeStep === 1 && validateStep1(step1Data)) ||
-                      (activeStep === 2 && step2Data.escolha) ||
-                      (activeStep === 3 &&
-                        (step3Data.isOnlineSelected ||
-                          step3Data.isProfile ||
-                          step3Data.isStorageSelected))
-                        ? "bg-[var(--colorMarineBlue)]"
-                        : "bg-gray-400 cursor-not-allowed"
-                    } text-base data-[focus-visible=true]:outline-[var(--colorMarineBlue)]`}
-                  >
-                    {isGringo ? "Next Step" : "Próxima Etapa"}
-                  </Button>
-                )}
-              </>
+              <Button
+                onClick={goToNextStep}
+                disabled={
+                  (activeStep === 1 && !validateStep1(step1Data)) ||
+                  (activeStep === 2 && !step2Data.escolha) ||
+                  (activeStep === 3 &&
+                    !(
+                      step3Data.isOnlineSelected ||
+                      step3Data.isProfile ||
+                      step3Data.isStorageSelected
+                    ))
+                }
+                color="primary"
+                variant="faded"
+                radius="sm"
+                className={`text-[var(--colorPastelBlue)] font-bold px-5 py-5 ${
+                  (activeStep === 1 && validateStep1(step1Data)) ||
+                  (activeStep === 2 && step2Data.escolha) ||
+                  (activeStep === 3 &&
+                    (step3Data.isOnlineSelected ||
+                      step3Data.isProfile ||
+                      step3Data.isStorageSelected))
+                    ? "bg-[var(--colorMarineBlue)]"
+                    : "bg-gray-400 cursor-not-allowed"
+                } text-base data-[focus-visible=true]:outline-[var(--colorMarineBlue)]`}
+              >
+                {isGringo ? "Next Step" : "Próxima Etapa"}
+              </Button>
             )}
           </div>
         </div>
