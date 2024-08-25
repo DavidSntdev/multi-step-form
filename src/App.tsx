@@ -72,7 +72,7 @@ function App() {
             {activeStep === 5 && <Confirm />}
           </div>
         </div>
-        <div className="flex justify-between items-end bg-[var(--colorMagnolia)] px-5 pt-16 lg:px-16 lg:pt-8 lg:h-2/3">
+        <div className="flex justify-between items-end bg-[var(--colorMagnolia)] lg:bg-[var(--colorWhite)] px-5 pt-16 lg:px-16 lg:pt-8 lg:h-2/3">
           <div>
             {activeStep === 5 || activeStep === 1 ? (
               <></>
