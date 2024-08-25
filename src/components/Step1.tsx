@@ -15,9 +15,10 @@ interface Step1Props {
       phoneNumber: string;
     }>
   >;
+  isGringo: boolean;
 }
 
-function Step1({ step1Data, setStep1Data }: Step1Props) {
+function Step1({ step1Data, setStep1Data, isGringo }: Step1Props) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -54,17 +55,20 @@ function Step1({ step1Data, setStep1Data }: Step1Props) {
     <>
       <h1 className={h1Class}>Personal Info</h1>
       <p className={pClass}>
-        Please provide your name, e-mail address and telephone number in order
-        to proceed.
+        {isGringo
+          ? "Please provide your name, email address, and phone number to proceed."
+          : "Por favor, forneça seu nome, e-mail e número de telefone para prosseguir."}
       </p>
       <form action="" className="flex flex-col gap-4">
         <Input
           type="text"
           name="name"
-          label="Name"
-          placeholder="Your Name"
+          label={isGringo ? "Name" : "Nome"}
+          placeholder={isGringo ? "Your Name" : "Seu Nome"}
           labelPlacement="outside"
-          errorMessage="The field is required"
+          errorMessage={
+            isGringo ? "This field is required" : "O campo é obrigatório"
+          }
           value={step1Data.name}
           onChange={handleChange}
           classNames={{
@@ -95,10 +99,14 @@ function Step1({ step1Data, setStep1Data }: Step1Props) {
         <Input
           type="email"
           name="email"
-          label="Email Address"
-          placeholder="you@example.com"
+          label={isGringo ? "Email Address" : "Endereço de Email"}
+          placeholder={isGringo ? "you@example.com" : "voce@exemplo.com"}
           labelPlacement="outside"
-          errorMessage="Please enter a valid email"
+          errorMessage={
+            isGringo
+              ? "Please enter a valid email"
+              : "Por favor insira um email válido"
+          }
           value={step1Data.email}
           onChange={handleChange}
           endContent={
@@ -132,10 +140,12 @@ function Step1({ step1Data, setStep1Data }: Step1Props) {
         <Input
           type="tel"
           name="phoneNumber"
-          label="Phone Number"
-          placeholder="+0 000 000 000"
+          label={isGringo ? "Phone Number" : "Número de Telefone"}
+          placeholder={isGringo ? "+0 000 000 000" : "+00 00000 0000"}
           labelPlacement="outside"
-          errorMessage="The field is required"
+          errorMessage={
+            isGringo ? "This field is required" : "O campo é obrigatório"
+          }
           value={step1Data.phoneNumber}
           onChange={handleChange}
           classNames={{

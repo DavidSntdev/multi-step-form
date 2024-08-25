@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { data } from "./data/data";
 import { Button } from "@nextui-org/react";
+import axios from "axios";
 import { validateStep1 } from "./components/utils/validateStep1";
 import { Step1Data, Step2Data, Step3Data } from "./components/utils/interfaces";
 import Pages from "./components/Pages";
@@ -12,6 +13,7 @@ import Confirm from "./components/Confirm";
 
 function App() {
   const [activeStep, setActiveStep] = useState<number>(1);
+  const [isGringo, setIsGringo] = useState<boolean>(false);
   const [step1Data, setStep1Data] = useState<Step1Data>({
     name: "",
     email: "",
@@ -26,6 +28,20 @@ function App() {
     isStorageSelected: false,
     isProfile: false,
   });
+
+  useEffect(() => {
+    const fetchCountry = async () => {
+      try {
+        const response = await axios.get(`https://ipapi.co/json/`);
+        const country = response.data.country_name;
+        setIsGringo(country !== "Brazil");
+      } catch (error) {
+        console.error("Error fetching country data", error);
+      }
+    };
+
+    fetchCountry();
+  }, []);
 
   const goToNextStep = () => {
     if (activeStep === 1 && !validateStep1(step1Data)) {
@@ -43,23 +59,32 @@ function App() {
       <picture className="w-full lg:w-[30%] relative z-0 ">
         <source media="(min-width: 1024px)" srcSet={data.sidebardesktop} />
         <img src={data.sidebarmobile} alt="" className="w-full" />
-        <Pages activeStep={activeStep} />
+        <Pages activeStep={activeStep} isGringo={isGringo} />
       </picture>
 
       <div className="lg:flex lg:flex-col lg:place-center lg:w-[70%]">
         <div className="flex justify-center z-10 mt-[-190px] lg:mt-0">
           <div className="bg-[var(--colorWhite)] rounded-xl p-8 mt-28 w-11/12 shadow-large shadow-[var(--colorLightBlue)] lg:shadow-none static z-20 lg:mt-0 md:mt-[-70px]">
             {activeStep === 1 && (
-              <Step1 step1Data={step1Data} setStep1Data={setStep1Data} />
+              <Step1
+                step1Data={step1Data}
+                setStep1Data={setStep1Data}
+                isGringo={isGringo}
+              />
             )}
             {activeStep === 2 && (
-              <Step2 Step2Data={step2Data} setStep2Data={setStep2Data} />
+              <Step2
+                Step2Data={step2Data}
+                setStep2Data={setStep2Data}
+                isGringo={isGringo}
+              />
             )}
             {activeStep === 3 && (
               <Step3
                 billingMode={step2Data.mensal}
                 step3Data={step3Data}
                 setStep3Data={setStep3Data}
+                isGringo={isGringo}
               />
             )}
             {activeStep === 4 && (
@@ -67,6 +92,7 @@ function App() {
                 step2Data={step2Data}
                 step3Data={step3Data}
                 onChangeStep={() => setActiveStep(2)}
+                isGringo={isGringo}
               />
             )}
             {activeStep === 5 && <Confirm />}
@@ -84,7 +110,7 @@ function App() {
                 radius="sm"
                 className="text-[var(--colorCoolGray)] font-bold px-5 py-2 data-[hover=true]:bg-slate-300 data-[focus-visible=true]:outline-[var(--colorMarineBlue)]"
               >
-                Go Back
+                {isGringo ? "Go Back" : "Voltar"}
               </Button>
             )}
           </div>
@@ -99,7 +125,7 @@ function App() {
                 radius="sm"
                 className="text-[var(--colorPastelBlue)] font-bold px-5 py-5 bg-[var(--colorPurplishBlue)] text-base data-[focus-visible=true]:outline-[var(--colorMarineBlue)]"
               >
-                Confirm
+                {isGringo ? "Confirm" : "Confirmar"}
               </Button>
             ) : (
               <Button
@@ -128,7 +154,7 @@ function App() {
                     : "bg-gray-400 cursor-not-allowed"
                 } text-base data-[focus-visible=true]:outline-[var(--colorMarineBlue)]`}
               >
-                Next Step
+                {isGringo ? "Next Step" : "Próxima Etapa"}
               </Button>
             )}
           </div>

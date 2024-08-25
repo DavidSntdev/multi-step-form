@@ -14,9 +14,10 @@ interface Step2Props {
       mensal: boolean;
     }>
   >;
+  isGringo: boolean;
 }
 
-function Step2({ Step2Data, setStep2Data }: Step2Props) {
+function Step2({ Step2Data, setStep2Data, isGringo }: Step2Props) {
   const [yearly, setYearly] = useState(Step2Data.mensal);
   const [selectedPlan, setSelectedPlan] = useState(Step2Data.escolha);
 
@@ -39,8 +40,14 @@ function Step2({ Step2Data, setStep2Data }: Step2Props) {
 
   return (
     <>
-      <h1 className={h1Class}>Select your plan</h1>
-      <p className={pClass}>You have the option of monthly or yearly billing</p>
+      <h1 className={h1Class}>
+        {isGringo ? "Select your plan" : "Selecione seu plano"}
+      </h1>
+      <p className={pClass}>
+        {isGringo
+          ? "You have the option of monthly or yearly billing"
+          : "Você tem a opção de cobrança mensal ou anual"}
+      </p>
       <div className="flex flex-col lg:flex-row gap-3 lg:gap-4">
         <button
           className={`${divPlans} cursor-pointer transition-all duration-500 ease-in-out transform hover:scale-105 outline-[var(--colorPurplishBlue)] lg:flex-col lg:w-44`}
@@ -62,13 +69,19 @@ function Step2({ Step2Data, setStep2Data }: Step2Props) {
         >
           <img src={data.iconArcade} alt="" />
           <div className="flex flex-col text-left">
-            <h1 className={h1Plans}>Arcade</h1>
+            <h1 className={h1Plans}>{isGringo ? "Arcade" : "Basico"}</h1>
             <p className="text-[var(--colorCoolGray)]">
-              {yearly ? "$90/yr" : "$9/mo"}
+              {yearly
+                ? isGringo
+                  ? "$90/yr"
+                  : "R$90/ano"
+                : isGringo
+                ? "$9/mo"
+                : "R$9/mês"}
             </p>
             {yearly && (
               <p className="text-[var(--colorPurplishBlue)] font-medium text-base">
-                2 months free
+                {isGringo ? "2 months free" : "2 meses grátis"}
               </p>
             )}
           </div>
@@ -93,13 +106,19 @@ function Step2({ Step2Data, setStep2Data }: Step2Props) {
         >
           <img src={data.iconAdvanced} alt="" />
           <div className="flex flex-col text-left">
-            <h1 className={h1Plans}>Advanced</h1>
+            <h1 className={h1Plans}>{isGringo ? "Advanced" : "Avançado"}</h1>
             <p className="text-[var(--colorCoolGray)]">
-              {yearly ? "$120/yr" : "$12/mo"}
+              {yearly
+                ? isGringo
+                  ? "$120/yr"
+                  : "R$120/ano"
+                : isGringo
+                ? "$12/mo"
+                : "R$12/mês"}
             </p>
             {yearly && (
               <p className="text-[var(--colorPurplishBlue)] font-medium text-base">
-                2 months free
+                {isGringo ? "2 months free" : "2 meses grátis"}
               </p>
             )}
           </div>
@@ -124,13 +143,19 @@ function Step2({ Step2Data, setStep2Data }: Step2Props) {
         >
           <img src={data.iconPro} alt="" />
           <div className="flex flex-col text-left">
-            <h1 className={h1Plans}>Pro</h1>
+            <h1 className={h1Plans}>{isGringo ? "Pro" : "Profissional"}</h1>
             <p className="text-[var(--colorCoolGray)]">
-              {yearly ? "$150/yr" : "$15/mo"}
+              {yearly
+                ? isGringo
+                  ? "$150/yr"
+                  : "R$150/ano"
+                : isGringo
+                ? "$15/mo"
+                : "R$15/mês"}
             </p>
             {yearly && (
               <p className="text-[var(--colorPurplishBlue)] font-medium text-base">
-                2 months free
+                {isGringo ? "2 months free" : "2 meses grátis"}
               </p>
             )}
           </div>
@@ -143,7 +168,7 @@ function Step2({ Step2Data, setStep2Data }: Step2Props) {
             color: yearly ? "var(--colorCoolGray)" : "var(--colorMarineBlue)",
           }}
         >
-          Monthly
+          {isGringo ? "Monthly" : "Mensal"}
         </p>
         <Switch
           checked={yearly}
@@ -162,7 +187,7 @@ function Step2({ Step2Data, setStep2Data }: Step2Props) {
             color: yearly ? "var(--colorMarineBlue)" : "var(--colorCoolGray)",
           }}
         >
-          Yearly
+          {isGringo ? "Yearly" : "Anual"}
         </p>
       </div>
     </>

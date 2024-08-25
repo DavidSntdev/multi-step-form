@@ -12,9 +12,10 @@ interface Step4Props {
     isProfile: boolean;
   };
   onChangeStep: () => void;
+  isGringo: boolean;
 }
 
-function Step4({ step2Data, step3Data, onChangeStep }: Step4Props) {
+function Step4({ step2Data, step3Data, onChangeStep, isGringo }: Step4Props) {
   const { escolha, mensal } = step2Data;
   const { isOnlineSelected, isStorageSelected, isProfile } = step3Data;
 
@@ -37,50 +38,79 @@ function Step4({ step2Data, step3Data, onChangeStep }: Step4Props) {
 
   return (
     <div>
-      <h1 className={h1Class}>Finishing up</h1>
+      <h1 className={h1Class}>{isGringo ? "Finishing up" : "Finalização"}</h1>
       <p className={pClass}>
-        Double-check everything looks OK before confirming
+        {isGringo
+          ? "Double-check everything looks OK before confirming"
+          : "Verifique novamente se tudo está bem antes de confirmar"}
       </p>
       <div className="flex flex-col p-5 bg-[var(--colorMagnolia)] rounded-md font-bold">
         <div className="flex flex-row justify-between items-center">
           <div>
             <h1 className="text-[--colorMarineBlue]">
-              {escolha} ({mensal ? "Yearly" : "Monthly"})
+              {isGringo
+                ? escolha
+                : escolha === "Arcade"
+                ? "Basico"
+                : escolha === "Advanced"
+                ? "Avançado"
+                : "Profissional"}{" "}
+              (
+              {mensal
+                ? isGringo
+                  ? "Yearly"
+                  : "Anual"
+                : isGringo
+                ? "Monthly"
+                : "Mensal"}
+              )
             </h1>
             <p
-              className="underline cursor-pointer text-[--colorCoolGray]"
+              className="underline cursor-pointer text-[--colorCoolGray] hover:text-[var(--colorPurplishBlue)]"
               onClick={onChangeStep}
             >
-              Change
+              {isGringo ? "Change" : "Trocar"}
             </p>
           </div>
           <div className="text-[--colorPurplishBlue]">
-            +${basePrice}/{mensal ? "yr" : "mo"}
+            +${basePrice}/
+            {mensal ? (isGringo ? "yr" : "ano") : isGringo ? "mo" : "mês"}
           </div>
         </div>
         <hr className="border-t border-[--colorLightGray] w-full mx-auto my-4" />
         <div className="flex flex-col text-[--colorCoolGray] gap-1">
           <div className="flex justify-between">
-            {isOnlineSelected && <p>Online Service</p>}
+            {isOnlineSelected && (
+              <p>{isGringo ? "Online Service" : "Serviço on-line"}</p>
+            )}
             {isOnlineSelected && (
               <p className="text-[--colorPurplishBlue]">
-                +${onlinePrice}/{mensal ? "yr" : "mo"}
+                +${onlinePrice}/
+                {mensal ? (isGringo ? "yr" : "ano") : isGringo ? "mo" : "mês"}
               </p>
             )}
           </div>
           <div className="flex justify-between">
-            {isStorageSelected && <p>Large Storage</p>}
+            {isStorageSelected && (
+              <p>{isGringo ? "Large Storage" : "Armazenamento maior"}</p>
+            )}
             {isStorageSelected && (
               <p className="text-[--colorPurplishBlue]">
-                +${storagePrice}/{mensal ? "yr" : "mo"}
+                +${storagePrice}/
+                {mensal ? (isGringo ? "yr" : "ano") : isGringo ? "mo" : "mês"}
               </p>
             )}
           </div>
           <div className="flex justify-between">
-            {isProfile && <p>Customizable Profile</p>}
+            {isProfile && (
+              <p>
+                {isGringo ? "Customizable Profile" : "Perfil personalizável"}
+              </p>
+            )}
             {isProfile && (
               <p className="text-[--colorPurplishBlue]">
-                +${profilePrice}/{mensal ? "yr" : "mo"}
+                +${profilePrice}/
+                {mensal ? (isGringo ? "yr" : "ano") : isGringo ? "mo" : "mês"}
               </p>
             )}
           </div>
@@ -88,10 +118,19 @@ function Step4({ step2Data, step3Data, onChangeStep }: Step4Props) {
       </div>
       <div className="flex flex-row justify-between pt-5 px-5 font-bold">
         <p className="text-[--colorCoolGray]">
-          Total ({mensal ? "per year" : "per month"})
+          Total (
+          {mensal
+            ? isGringo
+              ? "per year"
+              : "por ano"
+            : isGringo
+            ? "per month"
+            : "por mês"}
+          )
         </p>
         <p className="text-[--colorPurplishBlue]">
-          ${totalPrice}/{mensal ? "yr" : "mo"}
+          ${totalPrice}/
+          {mensal ? (isGringo ? "yr" : "ano") : isGringo ? "mo" : "mês"}
         </p>
       </div>
     </div>

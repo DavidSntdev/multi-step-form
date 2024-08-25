@@ -14,9 +14,15 @@ interface ChecksProps {
       isProfile: boolean;
     }>
   >;
+  isGringo: boolean;
 }
 
-function Checks({ billingMode, step3Data, setStep3Data }: ChecksProps) {
+function Checks({
+  billingMode,
+  step3Data,
+  setStep3Data,
+  isGringo,
+}: ChecksProps) {
   return (
     <div className="flex flex-col w-full justify-center gap-4 lg:items-center">
       <Checkbox
@@ -47,15 +53,23 @@ function Checks({ billingMode, step3Data, setStep3Data }: ChecksProps) {
         <div className="w-full flex justify-between items-center">
           <div className="flex flex-col ">
             <h1 className="text-[var(--colorMarineBlue)] font-bold text-base">
-              Online Service
+              {isGringo ? "Online Service" : "Serviço on-line"}
             </h1>
             <p className="text-[var(--colorCoolGray)] text-sm">
-              Access to multiplayer games
+              {isGringo
+                ? "Access to multiplayer games"
+                : "Acesso a jogos multijogador"}
             </p>
           </div>
           <div className="flex flex-col items-end">
             <p className="text-[var(--colorPurplishBlue)] font-medium text-sm">
-              {billingMode ? "+$10/yr" : "+$1/mo"}
+              {billingMode
+                ? isGringo
+                  ? "+$10/yr"
+                  : "+R$10/ano"
+                : isGringo
+                ? "+$1/mo"
+                : "+R$1/mês"}
             </p>
           </div>
         </div>
@@ -89,15 +103,23 @@ function Checks({ billingMode, step3Data, setStep3Data }: ChecksProps) {
         <div className="w-full flex justify-between items-center">
           <div className="flex flex-col ">
             <h1 className="text-[var(--colorMarineBlue)] font-bold text-base">
-              Larger storage
+              {isGringo ? "Larger storage" : "Armazenamento maior"}
             </h1>
             <p className="text-[var(--colorCoolGray)] text-sm">
-              Extra 1TB of cloud save
+              {isGringo
+                ? "Extra 1TB of cloud save"
+                : "1 TB extra de armazenamento na nuvem"}
             </p>
           </div>
           <div className="flex flex-col items-end">
             <p className="text-[var(--colorPurplishBlue)] font-medium text-sm">
-              {billingMode ? "+$20/yr" : "+$2/mo"}
+              {billingMode
+                ? isGringo
+                  ? "+$20/yr"
+                  : "+R$20/ano"
+                : isGringo
+                ? "+$2/mo"
+                : "+$2/mês"}
             </p>
           </div>
         </div>
@@ -131,15 +153,23 @@ function Checks({ billingMode, step3Data, setStep3Data }: ChecksProps) {
         <div className="w-full flex justify-between items-center">
           <div className="flex flex-col ">
             <h1 className="text-[var(--colorMarineBlue)] font-bold text-base">
-              Customizable profile
+              {isGringo ? "Customizable profile" : "Perfil personalizavel"}
             </h1>
             <p className="text-[var(--colorCoolGray)] text-sm">
-              Custom theme on your profile
+              {isGringo
+                ? "Custom theme on your profile"
+                : "Tema personalizado em seu perfil"}
             </p>
           </div>
           <div className="flex flex-col items-end">
             <p className="text-[var(--colorPurplishBlue)] font-medium text-sm">
-              {billingMode ? "+$20/yr" : "+$2/mo"}
+              {billingMode
+                ? isGringo
+                  ? "+$20/yr"
+                  : "+R$20/ano"
+                : isGringo
+                ? "+$2/mo"
+                : "+R$2/mês"}
             </p>
           </div>
         </div>
