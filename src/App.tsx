@@ -44,7 +44,7 @@ function App() {
   }, []);
 
   const goToNextStep = () => {
-    if (activeStep === 1 && !validateStep1(step1Data)) {
+    if (activeStep === 1 && !validateStep1(step1Data, isGringo)) {
       return;
     }
     setActiveStep((prevStep) => Math.min(prevStep + 1, 5));
@@ -131,7 +131,7 @@ function App() {
               <Button
                 onClick={goToNextStep}
                 disabled={
-                  (activeStep === 1 && !validateStep1(step1Data)) ||
+                  (activeStep === 1 && !validateStep1(step1Data, isGringo)) ||
                   (activeStep === 2 && !step2Data.escolha) ||
                   (activeStep === 3 &&
                     !(
@@ -144,7 +144,7 @@ function App() {
                 variant="faded"
                 radius="sm"
                 className={`text-[var(--colorPastelBlue)] font-bold px-5 py-5 ${
-                  (activeStep === 1 && validateStep1(step1Data)) ||
+                  (activeStep === 1 && validateStep1(step1Data, isGringo)) ||
                   (activeStep === 2 && step2Data.escolha) ||
                   (activeStep === 3 &&
                     (step3Data.isOnlineSelected ||
