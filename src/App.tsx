@@ -95,7 +95,7 @@ function App() {
                 isGringo={isGringo}
               />
             )}
-            {activeStep === 5 && <Confirm />}
+            {activeStep === 5 && <Confirm isGringo={isGringo} />}
           </div>
         </div>
         <div className="flex justify-between items-end bg-[var(--colorMagnolia)] lg:bg-[var(--colorWhite)] px-5 pt-16 lg:px-16 lg:pt-8 lg:h-2/3">
