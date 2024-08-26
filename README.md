@@ -52,6 +52,7 @@ Users should be able to:
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
+- TypeScript
 - [React](https://reactjs.org/) - JS library
 - [Vite.dev](https://vitejs.dev/) - React framework
 - [Tailwind CSS](https://tailwindcss.com/) - For styles
